@@ -5,38 +5,45 @@ const FloatingShapes = () => {
   const shapes = [
     { 
       id: 1, 
-      size: 'w-72 h-72', 
-      position: 'top-8 left-8', // Top left
-      gradient: 'from-blue-500/30 via-purple-600/20 to-cyan-400/30',
-      animation: 'animate-drift-ne'
+      size: 'w-[32rem] h-[32rem]', // Large blob far left
+      position: 'top-[23%] left-[-8%]',
+      gradient: 'from-blue-500/15 via-purple-600/10 to-cyan-400/15',
+      animation: 'animate-drift-se'
     },
     { 
       id: 2, 
-      size: 'w-64 h-64', 
-      position: 'top-12 right-12', // Top right
-      gradient: 'from-cyan-400/25 via-blue-500/30 to-indigo-600/20',
+      size: 'w-[24rem] h-[24rem]', // Medium blob top-right
+      position: 'top-[-5%] right-[18%]',
+      gradient: 'from-purple-500/20 via-pink-500/15 to-rose-400/20',
       animation: 'animate-drift-sw'
     },
     { 
       id: 3, 
-      size: 'w-96 h-96', 
-      position: 'bottom-16 left-16', // Bottom left
-      gradient: 'from-purple-500/30 via-pink-500/25 to-rose-400/30',
-      animation: 'animate-drift-se'
+      size: 'w-[38rem] h-[38rem]', // Largest blob bottom
+      position: 'bottom-[-15%] left-[28%]',
+      gradient: 'from-cyan-400/15 via-blue-500/10 to-indigo-600/15',
+      animation: 'animate-drift-ne'
     },
     { 
       id: 4, 
-      size: 'w-80 h-80', 
-      position: 'bottom-20 right-20', // Bottom right
-      gradient: 'from-green-400/25 via-cyan-500/30 to-emerald-400/20',
+      size: 'w-[28rem] h-[28rem]', // Medium-large blob right
+      position: 'top-[35%] right-[-12%]',
+      gradient: 'from-emerald-400/20 via-cyan-500/15 to-teal-400/20',
       animation: 'animate-drift-nw'
     },
-    { 
-      id: 5, 
-      size: 'w-60 h-60', 
-      position: 'top-1/4 left-1/2', // Upper center
-      gradient: 'from-yellow-400/20 via-pink-400/20 to-purple-400/20',
-      animation: 'animate-orbit'
+    {
+      id: 5,
+      size: 'w-[20rem] h-[20rem]', // Smallest blob center-left
+      position: 'top-[45%] left-[15%]',
+      gradient: 'from-violet-500/15 via-fuchsia-500/10 to-purple-400/15',
+      animation: 'animate-drift-ne'
+    },
+    {
+      id: 6,
+      size: 'w-[26rem] h-[26rem]', // Medium blob bottom-right
+      position: 'bottom-[8%] right-[15%]',
+      gradient: 'from-rose-400/20 via-orange-500/15 to-yellow-400/20',
+      animation: 'animate-drift-sw'
     },
   ];
 
