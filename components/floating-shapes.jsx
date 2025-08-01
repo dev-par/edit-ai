@@ -3,43 +3,50 @@ import React, { useMemo } from 'react';
 const FloatingShapes = () => {
   // Enhanced blob shapes configuration with subtle movement
   const shapes = [
-    { 
-      id: 1, 
-      size: 'w-[32rem] h-[32rem]', // Large blob far left
-      position: 'top-[23%] left-[-8%]',
-      gradient: 'from-blue-500/15 via-purple-600/10 to-cyan-400/15',
+    {
+      id: 1,
+      size: 'w-[30rem] h-[30rem]', // New blob for upper left coverage
+      position: 'top-[-2%] left-[12%]',
+      gradient: 'from-indigo-400/15 via-violet-500/10 to-purple-400/15',
       animation: 'animate-drift-se'
     },
     { 
       id: 2, 
+      size: 'w-[32rem] h-[32rem]', // Large blob far left
+      position: 'top-[23%] left-[-8%]',
+      gradient: 'from-blue-500/15 via-purple-600/10 to-cyan-400/15',
+      animation: 'animate-drift-sw'
+    },
+    { 
+      id: 3, 
       size: 'w-[24rem] h-[24rem]', // Medium blob top-right
       position: 'top-[-5%] right-[18%]',
       gradient: 'from-purple-500/20 via-pink-500/15 to-rose-400/20',
       animation: 'animate-drift-sw'
     },
     { 
-      id: 3, 
+      id: 4, 
       size: 'w-[38rem] h-[38rem]', // Largest blob bottom
       position: 'bottom-[-15%] left-[28%]',
       gradient: 'from-cyan-400/15 via-blue-500/10 to-indigo-600/15',
       animation: 'animate-drift-ne'
     },
     { 
-      id: 4, 
+      id: 5, 
       size: 'w-[28rem] h-[28rem]', // Medium-large blob right
       position: 'top-[35%] right-[-12%]',
       gradient: 'from-emerald-400/20 via-cyan-500/15 to-teal-400/20',
       animation: 'animate-drift-nw'
     },
     {
-      id: 5,
+      id: 6,
       size: 'w-[20rem] h-[20rem]', // Smallest blob center-left
       position: 'top-[45%] left-[15%]',
       gradient: 'from-violet-500/15 via-fuchsia-500/10 to-purple-400/15',
       animation: 'animate-drift-ne'
     },
     {
-      id: 6,
+      id: 7,
       size: 'w-[26rem] h-[26rem]', // Medium blob bottom-right
       position: 'bottom-[8%] right-[15%]',
       gradient: 'from-rose-400/20 via-orange-500/15 to-yellow-400/20',
