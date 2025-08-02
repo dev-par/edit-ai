@@ -4,6 +4,9 @@ import { useParallax } from '@/hooks/use-parallax';
 
 const FloatingShapes = () => {
   const scrollY = useParallax();
+
+  console.log("Scroll Y:", scrollY);
+
   const [stars, setStars] = useState([])
   const starCount = 500;
   // Enhanced blob shapes configuration with subtle movement
@@ -90,6 +93,7 @@ const FloatingShapes = () => {
     <>
       {/* Enhanced starscape background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+
       {stars.map(star => (
         <div
           key={star.id}
@@ -105,28 +109,23 @@ const FloatingShapes = () => {
             borderRadius: "50%",
             background: star.color || "white",
           }}
-        />
-        
+        />    
       ))}
       </div>
 
       {/* Enhanced floating gradient blobs with subtle movement */}
-      <div className="absolute inset-0 pointer-events-none z-10">
+      <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
         {shapes.map((shape) => (
           <div
             key={shape.id}
-            className={`absolute ${shape.size} ${shape.position} bg-gradient-to-r ${shape.gradient} rounded-full blur-3xl ${shape.animation}`}
-            style={{
-              filter: 'blur(60px)',
-              transform: `translateY(${scrollY * 0.5}px) rotate(${scrollY * 0.1}deg)`,
-            }}
+            className={`absolute ${shape.size} ${shape.position} bg-gradient-to-r ${shape.gradient} rounded-full blur-3xl `}
+                          style={{
+                filter: 'blur(60px)',
+                transform: `translateY(${scrollY * .5}px) rotate(${scrollY * 0.1}deg)`,
+                opacity: Math.max(0, 1 - (scrollY * 0.001))
+              }}
           />
         ))}
-      </div>
-
-      {/* Ambient light overlay for depth */}
-      <div className="absolute inset-0 pointer-events-none z-15">
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-blue-500/5 to-purple-900/10 dark:from-transparent dark:via-cyan-400/5 dark:to-indigo-900/15 animate-pulse-very-slow" />
       </div>
     </>
   );
