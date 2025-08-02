@@ -1,6 +1,11 @@
-import React, { useMemo } from 'react';
+"use client";
+import React, { useMemo, useState, useEffect } from 'react';
+import { useParallax } from '@/hooks/use-parallax';
 
 const FloatingShapes = () => {
+  const scrollY = useParallax();
+  const [stars, setStars] = useState([])
+  const starCount = 500;
   // Enhanced blob shapes configuration with subtle movement
   const shapes = [
     {
@@ -54,20 +59,19 @@ const FloatingShapes = () => {
     },
   ];
 
+
   // Enhanced starscape with multiple star types
-  const starCount = 500;
-  const stars = useMemo(() => {
+  useEffect(() => {
     const starTypes = [
       { className: 'animate-twinkle-fast', baseOpacity: 0.4, sizeRange: [1, 2] },
       { className: 'animate-twinkle', baseOpacity: 0.3, sizeRange: [1.5, 3] },
       { className: 'animate-twinkle-slow', baseOpacity: 0.5, sizeRange: [0.5, 1.5] },
       { className: 'animate-shimmer', baseOpacity: 0.6, sizeRange: [2, 4] },
     ];
-
-    return Array.from({ length: starCount }).map((_, index) => {
+    const colors = ['blue', 'purple', 'cyan', 'pink'];
+    const generatedStars = Array.from({ length: starCount }).map((_, index) => {
       const starType = starTypes[Math.floor(Math.random() * starTypes.length)];
       const size = Math.random() * (starType.sizeRange[1] - starType.sizeRange[0]) + starType.sizeRange[0];
-      
       return {
         id: `star-${index}`,
         top: `${Math.random() * 100}%`,
@@ -76,52 +80,52 @@ const FloatingShapes = () => {
         delay: `${Math.random() * 8}s`,
         className: starType.className,
         baseOpacity: starType.baseOpacity,
-        // Some stars get a subtle color tint
-        color: Math.random() > 0.8 ? ['blue', 'purple', 'cyan', 'pink'][Math.floor(Math.random() * 4)] : null
+        color: Math.random() > 0.8 ? colors[Math.floor(Math.random() * colors.length)] : null
       };
     });
-  }, [starCount]);
+    setStars(generatedStars);
+  }, []);
 
   return (
     <>
       {/* Enhanced starscape background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {stars.map(({ id, top, left, size, delay, className, baseOpacity, color }) => (
-          <div
-            key={id}
-            className={`absolute rounded-full ${className} ${
-              color 
-                ? `bg-${color}-400/40 dark:bg-${color}-300/50 shadow-${color}-400/20` 
-                : 'bg-gray-400/30 dark:bg-white/40'
-            }`}
-            style={{
-              width: size,
-              height: size,
-              top,
-              left,
-              animationDelay: delay,
-              opacity: baseOpacity,
-              boxShadow: color ? `0 0 8px rgba(var(--color-${color}-400), 0.3)` : undefined,
-            }}
-          />
-        ))}
+      {stars.map(star => (
+        <div
+          key={star.id}
+          className={`star ${star.className} ${star.color ? `star-${star.color}` : ""}`}
+          style={{
+            position: "absolute",
+            top: star.top,
+            left: star.left,
+            width: star.size,
+            height: star.size,
+            opacity: star.baseOpacity,
+            animationDelay: star.delay,
+            borderRadius: "50%",
+            background: star.color || "white",
+          }}
+        />
+        
+      ))}
       </div>
 
       {/* Enhanced floating gradient blobs with subtle movement */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-10">
+      <div className="absolute inset-0 pointer-events-none z-10">
         {shapes.map((shape) => (
           <div
             key={shape.id}
             className={`absolute ${shape.size} ${shape.position} bg-gradient-to-r ${shape.gradient} rounded-full blur-3xl ${shape.animation}`}
             style={{
               filter: 'blur(60px)',
+              transform: `translateY(${scrollY * 0.5}px) rotate(${scrollY * 0.1}deg)`,
             }}
           />
         ))}
       </div>
 
       {/* Ambient light overlay for depth */}
-      <div className="fixed inset-0 pointer-events-none z-15">
+      <div className="absolute inset-0 pointer-events-none z-15">
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-blue-500/5 to-purple-900/10 dark:from-transparent dark:via-cyan-400/5 dark:to-indigo-900/15 animate-pulse-very-slow" />
       </div>
     </>

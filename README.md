@@ -17,6 +17,7 @@ npm install
 ```bash
 npm run dev
 ```
+
 This uses Next.js with Turbopack. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### 3. Build and start the production server
@@ -25,6 +26,7 @@ This uses Next.js with Turbopack. Open [http://localhost:3000](http://localhost:
 npm run build
 npm run start
 ```
+
 This will build the app and start a production server.
 
 ### 4. Lint the code
@@ -32,6 +34,7 @@ This will build the app and start a production server.
 ```bash
 npm run lint
 ```
+
 Runs ESLint to check for code style and errors.
 
 ### 5. Edit and develop
