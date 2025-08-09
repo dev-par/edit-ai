@@ -375,6 +375,18 @@
     }
   }
 
+  @keyframes pulse-medium {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.95);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+  }
+
   @keyframes pulse-very-slow {
 
     0%,
@@ -410,6 +422,10 @@
 
   .animate-pulse-slow {
     animation: pulse-slow 8s ease-in-out infinite;
+  }
+
+  .animate-pulse-medium {
+    animation: pulse-medium 3s ease-in-out infinite;
   }
 
 
