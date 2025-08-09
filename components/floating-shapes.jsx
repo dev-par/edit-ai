@@ -60,7 +60,6 @@ const FloatingShapes = () => {
     },
   ];
 
-
   // Enhanced starscape with multiple star types
   useEffect(() => {
     const starTypes = [
@@ -112,7 +111,7 @@ const FloatingShapes = () => {
       </div>
 
       {/* Enhanced floating gradient blobs with subtle movement */}
-      <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {shapes.map((shape) => (
           <div
             key={shape.id}

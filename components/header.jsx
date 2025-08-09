@@ -3,12 +3,20 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
+import { SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
+import { BarLoader } from 'react-spinners'
+import { useStoreUser } from '@/hooks/use-store-user'
+import { Unauthenticated, Authenticated } from "convex/react"
+import { LayoutDashboardIcon } from 'lucide-react'
 
 const Header = () => {
-
   const path = usePathname();
+  const { isLoading, isAuthenticated } = useStoreUser();
+
+  if (path.includes("/editor")) {
+    return null;
+  }
 
   return (
     <header className='fixed top-6 left-1/2 transform -translate-x-1/2 z-50 text-nowrap'>
@@ -41,15 +49,23 @@ const Header = () => {
             )}
 
             <div className='flex items-center gap-3 ml-10 md:ml-20'>
-            <SignedOut>
+            <Unauthenticated>
               <SignInButton>
                 <Button variant="glass">Sign In</Button>
               </SignInButton>
               <SignUpButton>
                 <Button variant="primary">Sign Up</Button>
               </SignUpButton>
-            </SignedOut>
-            <SignedIn>
+            </Unauthenticated>
+            <Authenticated>
+
+              <Link href="/dashboard">
+                <Button variant="glass">
+                  <LayoutDashboardIcon className='w-4 h-4' />
+                  <span className='hidden md:flex'>Dashboard</span>
+                </Button>
+              </Link>
+
               <UserButton
                 appearance={{
                   elements: {
@@ -57,8 +73,14 @@ const Header = () => {
                   }
                 }}
               />
-            </SignedIn>
+            </Authenticated>
             </div>
+
+            {isLoading && (
+            <div className='fixed bottom-0 left-0 w-full z-40 flex justify-center'>
+              <BarLoader width={'95%'} color='#06b6d4'/>
+            </div>
+            )}
         </div>
     </header>
   )
