@@ -114,7 +114,7 @@ const Pricing = () => {
       ];
 
   return (
-    <section className='py-20' id='pricing'>
+    <section className='py-20 scroll-mt-15' id='pricing'>
       <div className='max-w-6xl mx-auto px-6'>
         <div 
             ref={headerRef}

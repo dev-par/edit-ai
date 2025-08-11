@@ -512,4 +512,13 @@
     animation: fade-in-up 0.6s ease-out forwards;
   }
 
+  /* More comprehensive Clerk modal selectors */
+  div[role="dialog"],
+  div[aria-modal="true"],
+  .clerk-modal,
+  .clerk-overlay,
+  [data-clerk-portal] {
+    z-index: 9999 !important;
+  }
+  
 }
