@@ -34,6 +34,14 @@ const FeatureCard = ({
         <p className="text-muted-foreground leading-relaxed">
           {description}
         </p>
+
+        {/* Hover glow effect */}
+        <div 
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at center, hsl(240 100% 70% / 0.1), transparent 70%)',
+          }}
+        />
       </div>
     </div>
   );
