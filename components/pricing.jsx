@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 
 const PricingCard = ({ id, plan, price, features, buttonText, featured = false, planId }) => {
 
-    const [ref, isVisible] = useIntersectionObserver(.25);
+    const [ref, isVisible] = useIntersectionObserver(.4);
     const { has } = useAuth();
 
     const isCurrentPlan = id ? has?.({ plan: id }) : false;
@@ -79,6 +79,7 @@ const PricingCard = ({ id, plan, price, features, buttonText, featured = false, 
 
 const Pricing = () => {
     const [headerRef, headerVisible] = useIntersectionObserver(.9);
+    const [footerRef, footerVisible] = useIntersectionObserver(.1);
 
     const plans = [
         {
@@ -117,7 +118,7 @@ const Pricing = () => {
       <div className='max-w-6xl mx-auto px-6'>
         <div 
             ref={headerRef}
-            className={`text-center mb-16 transition-all duration-700 ease-out ${
+            className={`text-center mb-12 transition-all duration-700 ease-out ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
         >
@@ -133,6 +134,30 @@ const Pricing = () => {
             {plans.map((plan, index) => (
                 <PricingCard key={index} {...plan} />
             ))}
+        </div>
+
+        {/* Trust indicators */}
+        <div 
+            ref={footerRef}
+            className={`text-center mt-16 transition-all duration-700 ease-out ${
+                footerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+        >
+            <p className="text-muted-foreground mb-6 text-lg">Trusted by creative professionals worldwide</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 text-sm text-muted-foreground">
+                <span className="flex items-center">
+                    <span className="text-green-400 mr-2">✓</span>
+                    30-day money back guarantee
+                </span>
+                <span className="flex items-center">
+                    <span className="text-green-400 mr-2">✓</span>
+                    Cancel anytime
+                </span>
+                <span className="flex items-center">
+                    <span className="text-green-400 mr-2">✓</span>
+                    Instant activation
+                </span>
+            </div>
         </div>
 
       </div>

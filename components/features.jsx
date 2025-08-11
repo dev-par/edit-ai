@@ -97,7 +97,7 @@ const FeaturesSection = () => {
     <div className="max-w-7xl mx-auto px-4 relative z-10">
       <div 
         ref={headerRef}
-        className={`text-center mb-16 transition-all duration-700 ease-out ${
+        className={`text-center mb-12 transition-all duration-700 ease-out ${
           headerVisible 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-8'
