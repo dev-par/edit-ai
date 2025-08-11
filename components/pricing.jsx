@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 
 const PricingCard = ({ id, plan, price, features, buttonText, featured = false, planId }) => {
 
-    const [ref, isVisible] = useIntersectionObserver(.4);
+    const [ref, isVisible] = useIntersectionObserver(.25);
     const { has } = useAuth();
 
     const isCurrentPlan = id ? has?.({ plan: id }) : false;
@@ -34,13 +34,13 @@ const PricingCard = ({ id, plan, price, features, buttonText, featured = false, 
     return (
         <div
         ref={ref}
-        className={`group transition-transform duration-300 ease-out ${
+        className={`group transition-all duration-750 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-10'
         } hover:scale-105 hover:-translate-y-1 cursor-pointer rounded-3xl overflow-hidden`}
         >
-            <div className={`backdrop-blur-lg border transition-colors duration-200 rounded-3xl p-8 h-full relative flex flex-col ${
+            <div className={`backdrop-blur-lg border transition-colors duration-200 rounded-3xl p-10 h-full relative flex flex-col ${
                 featured 
                     ? 'bg-gradient-to-b from-blue-500/20 to-purple-600/20 border-blue-400/50 group-hover:border-blue-400/70' 
                     : 'bg-white/5 border-white/10 group-hover:border-white/30'
@@ -99,6 +99,7 @@ const Pricing = () => {
           plan: "Pro",
           price: 5,
           features: [
+            "Unlimited projects",
             "Unlimited exports",
             "All Editing Tools",
             "AI Background Remover",
@@ -128,7 +129,7 @@ const Pricing = () => {
             </p>     
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto'>
             {plans.map((plan, index) => (
                 <PricingCard key={index} {...plan} />
             ))}
