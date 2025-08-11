@@ -24,7 +24,7 @@ const FeatureCard = ({
     >
       <div className="backdrop-blur-lg border border-white/10 bg-white/5 transition-colors duration-200 hover:bg-white/10 hover:border-white/20 rounded-2xl p-8 h-full relative">
         <div className="inline-block mb-6">
-          <Icon className="w-12 h-12 text-primary transition-transform duration-200 group-hover:scale-105" />
+          <Icon className="w-12 h-12 transition-transform duration-200 group-hover:scale-105" style={{ color: '#6565ff' }} />
         </div>
 
         <h3 className="text-xl font-semibold mb-4 text-foreground transition-colors duration-200 group-hover:text-primary">
@@ -83,15 +83,11 @@ const FeaturesSection = () => {
 
   return (
     <section id="features" className="py-20 relative">
-    {/* Background elements */}
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-3xl animate-spin-slow" />
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-accent/20 to-primary/20 rounded-full blur-3xl animate-spin-slow-reverse" />
-    </div>
+
 
     <div className="max-w-7xl mx-auto px-4 relative z-10">
       <div className="text-center mb-16 animate-fade-in-up">
-        <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mb-4">
           Unleash Creative Power
         </h2>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
