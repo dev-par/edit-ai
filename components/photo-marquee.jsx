@@ -7,37 +7,31 @@ const PhotoMarquee = () => {
     {
       id: 1,
       before: "/heroCarBefore.png",
-      after: "/heroCarAfter.png",
       title: "Car Enhancement"
     },
     {
       id: 2,
-      before: "/heroCarBefore.png", // Placeholder - replace with actual before images
-      after: "/heroCarAfter.png",   // Placeholder - replace with actual after images
+      before: "/stepGarden.png", // Placeholder - replace with actual before images
       title: "Color Correction"
     },
     {
       id: 3,
-      before: "/heroCarBefore.png",
-      after: "/heroCarAfter.png",
+      before: "/laptopSetup.png",
       title: "Background Removal"
     },
     {
       id: 4,
-      before: "/heroCarBefore.png",
-      after: "/heroCarAfter.png",
+      before: "/mountianPhoto.png",
       title: "Image Enhancement"
     },
     {
       id: 5,
-      before: "/heroCarBefore.png",
-      after: "/heroCarAfter.png",
+      before: "/coolCar.png",
       title: "Professional Edit"
     },
     {
       id: 6,
-      before: "/heroCarBefore.png",
-      after: "/heroCarAfter.png",
+      before: "/bowlOfStrawberries.png",
       title: "Quality Boost"
     }
   ];

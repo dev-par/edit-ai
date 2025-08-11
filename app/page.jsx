@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import HeroSection from "@/components/hero";
+import FeaturesSection from "@/components/features";
 
 export default function Home() {
   return (
     <div className="pt-12">
         {/* hero section */}
         <HeroSection />
+
         {/* features section */}
+        <FeaturesSection />
         {/* pricing section */}
+
         
         <section className="py-20 text-center">
           <div className="max-w-4xl mx-auto px-6">
