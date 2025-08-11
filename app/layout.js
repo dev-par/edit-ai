@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingShapes from "@/components/floating-shapes";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadesOfPurple } from "@clerk/themes";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
               <Toaster richColors />
               {children}
             </main>
+            <Footer />
           </ConvexClientProvider>
         </ClerkProvider>
       </ThemeProvider>
