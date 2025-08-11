@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import HeroSection from "@/components/hero";
 import FeaturesSection from "@/components/features";
+import Pricing from "@/components/pricing";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         {/* features section */}
         <FeaturesSection />
         {/* pricing section */}
+        <Pricing />
 
         
         <section className="py-20 text-center">

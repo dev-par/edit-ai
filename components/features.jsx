@@ -10,7 +10,7 @@ const FeatureCard = ({
   description,
   delay = 0,
 }) => {
-  const [ref, isVisible] = useIntersectionObserver();
+  const [ref, isVisible] = useIntersectionObserver(.4);
 
   return (
     <div
@@ -18,8 +18,8 @@ const FeatureCard = ({
       className={`group transition-all duration-500 ease-out ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-8'
-      } hover:scale-105`}
+          : 'opacity-0 translate-y-10'
+      } hover:scale-105 cursor-pointer`}
       style={{ transitionDelay: `${delay * 300}ms` }}
     >
       <div className="backdrop-blur-lg border border-white/10 bg-white/5 transition-colors duration-200 hover:bg-white/10 hover:border-white/20 rounded-2xl p-8 h-full relative">
@@ -49,7 +49,7 @@ const FeatureCard = ({
 
 
 const FeaturesSection = () => {
-    const [headerRef, headerVisible] = useIntersectionObserver(0.1);
+    const [headerRef, headerVisible] = useIntersectionObserver(0.9);
     const features = [
         {
           icon: Scissors,
@@ -91,7 +91,7 @@ const FeaturesSection = () => {
 
 
   return (
-    <section id="features" className="py-5 relative">
+    <section id="features" className="py-5 relative scroll-mt-32">
 
 
     <div className="max-w-7xl mx-auto px-4 relative z-10">
