@@ -76,6 +76,7 @@ const BeforeAfterSlider = () => {
               alt="After editing"
               className="w-full h-auto pointer-events-none"
               draggable={false}
+            />
           </div>
 
         </div>
