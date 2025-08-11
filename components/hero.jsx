@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import PhotoMarquee from './photo-marquee'
+import { MousePointerClick } from 'lucide-react'
 
 
 const HeroSection = () => {
@@ -24,20 +25,21 @@ const HeroSection = () => {
      <div className='text-center z-10 px-6 flex-shrink-0'>
         <div className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-10"}`}>
             <h1 className='text-6xl md:text-9xl font-black mb-6 tracking-tight'>
-                <span className="text-white">Edit Beyond</span>
+                <span className="text-white">Edit</span>
                 <br/>
-                <span className='bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse'>Reality</span>
+                <span className='bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse'>Beyond Reality</span>
             </h1>
             <p className='text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed'>
             Professional image editing powered by AI. Crop, resize, adjust colors, remove backgrounds, and enhance your images with cutting-edge technology.
             </p>
 
             <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-12'>
-                <Link href="/dashboard">
-                    <Button variant="primary" size='xl'>
-                        Get Started
-                    </Button>
-                </Link>
+            <Link href="/dashboard">
+                <Button variant="primary" size='xl'>
+                <MousePointerClick className="mr-2" />
+                Get Started Now
+              </Button>
+            </Link>
             </div>
         </div>
      </div>

@@ -3,10 +3,11 @@ import Link from "next/link";
 import HeroSection from "@/components/hero";
 import FeaturesSection from "@/components/features";
 import Pricing from "@/components/pricing";
+import { MousePointerClick } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="pt-12">
+    <div className="pt-12 md:pt-20 lg:pt-12">
         {/* hero section */}
         <HeroSection />
 
@@ -25,8 +26,9 @@ export default function Home() {
               Join thousands of creators already using AI to transform their images and bring their vision to life.
             </p>
             <Link href="/dashboard">
-              <Button variant="primary" size='xl'>
-                Get Started
+                <Button variant="primary" size='xl'>
+                <MousePointerClick className="mr-2" />
+                Get Started Now
               </Button>
             </Link>
           </div>
