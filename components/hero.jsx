@@ -28,7 +28,7 @@ const HeroSection = () => {
                 <span className='bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse'>Reality</span>
             </h1>
             <p className='text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed'>
-                Professional image editing, AI-powered.
+            Professional image editing powered by AI. Crop, resize, adjust colors, remove backgrounds, and enhance your images with cutting-edge technology.
             </p>
 
             <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-12'>
@@ -41,7 +41,10 @@ const HeroSection = () => {
         </div>
         
         {/* Demo Section */}
+        <div 
+            className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-20"}`}>
         <BeforeAfterSlider />
+        </div>
      </div>
     </section>
   )
