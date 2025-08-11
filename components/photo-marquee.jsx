@@ -46,70 +46,43 @@ const PhotoMarquee = () => {
   const duplicatedPhotos = [...editedPhotos, ...editedPhotos];
 
   return (
-    <div className="w-full mt-16 overflow-hidden">
+    <div className="w-full overflow-hidden">
       <div className="relative">
-        {/* Gradient overlays for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
         
         {/* Scrolling container */}
-        <div className="flex animate-marquee hover:pause-marquee">
+        <div className="flex animate-marquee">
           {duplicatedPhotos.map((photo, index) => (
             <div
               key={`${photo.id}-${index}`}
-              className="flex-shrink-0 mx-4 group cursor-pointer"
+              className="flex-shrink-0 mx-4"
             >
-              {/* Photo container with hover effect */}
-              <div className="relative w-80 h-56 bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+              {/* Photo container */}
+              <div className="relative w-88 h-60 bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg">
                 {/* Before image (base layer) */}
                 <img
                   src={photo.before}
                   alt={`${photo.title} - Before`}
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                  className="absolute inset-0 w-full h-full object-cover"
                   draggable={false}
                 />
                 
-                {/* After image (revealed on hover) */}
+                {/* After image */}
                 <img
                   src={photo.after}
                   alt={`${photo.title} - After`}
-                  className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0"
                   draggable={false}
                 />
                 
-                {/* Overlay with title and labels */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white font-semibold text-lg mb-2">{photo.title}</h3>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-300 opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                        Before
-                      </span>
-                      <span className="text-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        After
-                      </span>
-                    </div>
-                  </div>
-                </div>
+
                 
-                {/* Hover indicator */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                    Hover to see result
-                  </div>
-                </div>
+
               </div>
             </div>
           ))}
         </div>
       </div>
       
-      {/* Instruction text */}
-      <div className="text-center mt-8">
-        <p className="text-gray-400 text-sm">
-          Hover over images to see the amazing transformations
-        </p>
-      </div>
     </div>
   );
 };

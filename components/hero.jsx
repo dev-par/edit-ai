@@ -19,8 +19,9 @@ const HeroSection = () => {
     }, [])
 
   return (
-    <section className='min-h-screen flex items-center justify-center relative overflow-hidden'>
-     <div className='text-center z-10 px-6'>
+    <section className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden'>
+     {/* Text Content Container */}
+     <div className='text-center z-10 px-6 flex-shrink-0'>
         <div className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-10"}`}>
             <h1 className='text-6xl md:text-9xl font-black mb-6 tracking-tight'>
                 <span className="text-white">Edit Beyond</span>
@@ -39,12 +40,12 @@ const HeroSection = () => {
                 </Link>
             </div>
         </div>
+     </div>
         
-        {/* Demo Section */}
-        <div 
-            className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-20"}`}>
+     {/* Demo Section - Full Width */}
+     <div 
+        className={`pt-5 w-full transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-20"}`}>
         <PhotoMarquee />
-        </div>
      </div>
     </section>
   )

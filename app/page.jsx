@@ -4,7 +4,7 @@ import HeroSection from "@/components/hero";
 
 export default function Home() {
   return (
-    <div className="pt-36">
+    <div className="pt-12">
         {/* hero section */}
         <HeroSection />
         {/* features section */}
