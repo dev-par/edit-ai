@@ -448,4 +448,22 @@
   .animate-orbit {
     animation: orbit 30s linear infinite;
   }
+
+  /* Marquee animation for photo carousel */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
+  }
+
+  .pause-marquee:hover {
+    animation-play-state: paused;
+  }
 }

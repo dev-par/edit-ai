@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import BeforeAfterSlider from './before-after-slider'
+import PhotoMarquee from './photo-marquee'
 
 
 const HeroSection = () => {
@@ -22,7 +22,7 @@ const HeroSection = () => {
     <section className='min-h-screen flex items-center justify-center relative overflow-hidden'>
      <div className='text-center z-10 px-6'>
         <div className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-10"}`}>
-            <h1 className='text-6xl md:text-9xl font-black mb-5 tracking-tight'>
+            <h1 className='text-6xl md:text-9xl font-black mb-6 tracking-tight'>
                 <span className="text-white">Edit Beyond</span>
                 <br/>
                 <span className='bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse'>Reality</span>
@@ -43,7 +43,7 @@ const HeroSection = () => {
         {/* Demo Section */}
         <div 
             className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-20"}`}>
-        <BeforeAfterSlider />
+        <PhotoMarquee />
         </div>
      </div>
     </section>
