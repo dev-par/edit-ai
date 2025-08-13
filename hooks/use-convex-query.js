@@ -35,8 +35,6 @@ export const useConvexQuery = (query, ...args) => {
     }
 }
 
-
-
 export const useConvexMutation = (mutation) => {
     const mutationFn = useMutation(mutation);
 

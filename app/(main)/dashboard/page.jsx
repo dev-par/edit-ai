@@ -6,24 +6,36 @@ import { useConvexQuery } from '@/hooks/use-convex-query'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { useStoreUser } from '@/hooks/use-store-user'
+import ClipLoader from 'react-spinners/ClipLoader'
+import BarLoader from 'react-spinners/BarLoader'
 
 // Wrapper component that only renders the query when authenticated
 const AuthenticatedDashboard = () => {
-  const { data: projects, isLoading, error } = useConvexQuery(
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+
+
+  const { data: projects, isLoading } = useConvexQuery(
     api.projects.getUserProjects
   );
 
   if (isLoading) {
-    return <div>Loading projects...</div>
-  }
-
-  if (error) {
-    return <div>Error loading projects: {error.message}</div>
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <ClipLoader 
+            color="#ffffff" 
+            size={50}
+            loading={true}
+          />
+          <p className="text-white/70 text-sm">Loading...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div>
-      <div>
+    <div className='min-h-screen pt-32 pb-16'>
+      <div className='container mx-auto px-6'>
         <div className='flex justify-between items-center mb-8'>
           <div>
             <h1 className='text-4xl font-bold text-white mb-2'>
@@ -35,7 +47,7 @@ const AuthenticatedDashboard = () => {
           </div>
 
           <Button 
-          onClick={() => {}} // TODO: Add modal functionality
+          onClick={() => setShowNewProjectModal(true)}
           variant='primary' 
           size='lg' 
           className='gap-2'>
@@ -43,26 +55,8 @@ const AuthenticatedDashboard = () => {
             New Project
           </Button>
         </div>
-      </div>
-      
-      {/* Display projects */}
-      <div className='mt-8'>
-        {projects && projects.length > 0 ? (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {projects.map((project) => (
-              <div key={project._id} className='bg-white/10 rounded-lg p-6'>
-                <h3 className='text-xl font-semibold mb-2'>{project.title}</h3>
-                <p className='text-white/70 text-sm'>
-                  Created: {new Date(project.createdAt).toLocaleDateString()}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className='text-center py-12'>
-            <p className='text-white/70 text-lg'>No projects yet. Create your first project!</p>
-          </div>
-        )}
+
+        {isLoading ? <BarLoader width='100%' /> : "projects"}
       </div>
     </div>
   )
@@ -72,11 +66,18 @@ const Dashboard = () => {
   const { isLoading: authLoading, isAuthenticated } = useStoreUser();
 
   if (authLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (!isAuthenticated) {
-    return <div>Please sign in to view your projects.</div>
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <ClipLoader 
+            color="#ffffff" 
+            size={50}
+            loading={true}
+          />
+          <p className="text-white/70 text-sm">Loading...</p>
+        </div>
+      </div>
+    )
   }
 
   return <AuthenticatedDashboard />
