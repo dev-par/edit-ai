@@ -7,7 +7,7 @@ import { MousePointerClick } from "lucide-react";
 
 export default function Home() {
   return (
-    <div id="top" className="pt-12 md:pt-20 lg:pt-12">
+    <div id="top" className="pt-12 md:pt-25 lg:pt-9">
         {/* hero section */}
         <HeroSection />
 

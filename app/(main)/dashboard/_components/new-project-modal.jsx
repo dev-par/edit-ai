@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import { ImageIcon } from 'lucide-react'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { UpgradeModal } from '@/components/upgrade-modal'
 
 const NewProjectModal = ({ isOpen, onClose }) => {
     const [isUploading, setIsUploading] = useState(false);
@@ -246,8 +247,16 @@ const NewProjectModal = ({ isOpen, onClose }) => {
                 </DialogFooter>
             </DialogContent>
         </Dialog>
+
+        {/* Upgrade Modal */}
+        <UpgradeModal 
+            isOpen={showUpgradeModal}
+            onClose={() => setShowUpgradeModal(false)}
+            restrictedTool="projects"
+            reason="Free plan is limited to 3 projects. Upgrade to Pro for unlimited projects"
+            />
         </>
-  )
+    )
 }
 
 export default NewProjectModal

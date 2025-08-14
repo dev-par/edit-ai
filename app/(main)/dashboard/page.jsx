@@ -8,6 +8,7 @@ import { Plus, Sparkles } from 'lucide-react'
 import { useStoreUser } from '@/hooks/use-store-user'
 import ClipLoader from 'react-spinners/ClipLoader'
 import NewProjectModal from './_components/new-project-modal'
+import ProjectGrid from './_components/project-grid'
 
 // Wrapper component that only renders the query when authenticated
 const AuthenticatedDashboard = () => {
@@ -57,7 +58,7 @@ const AuthenticatedDashboard = () => {
         </div>
 
         {projects && projects.length > 0 ? ( 
-          <></>
+          <ProjectGrid projects={projects}/>
         ) : (
           <div className='flex flex-col items-center justify-center py-20 text-center'>
             <h3 className='text-2xl font-semibold text-white mb-3'>
