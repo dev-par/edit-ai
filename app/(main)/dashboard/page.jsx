@@ -4,10 +4,10 @@ import React, { useState } from 'react'
 import { api } from '@/convex/_generated/api'
 import { useConvexQuery } from '@/hooks/use-convex-query'
 import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
+import { Plus, Sparkles } from 'lucide-react'
 import { useStoreUser } from '@/hooks/use-store-user'
 import ClipLoader from 'react-spinners/ClipLoader'
-import BarLoader from 'react-spinners/BarLoader'
+import NewProjectModal from './_components/new-project-modal'
 
 // Wrapper component that only renders the query when authenticated
 const AuthenticatedDashboard = () => {
@@ -56,7 +56,34 @@ const AuthenticatedDashboard = () => {
           </Button>
         </div>
 
-        {isLoading ? <BarLoader width='100%' /> : "projects"}
+        {projects && projects.length > 0 ? ( 
+          <></>
+        ) : (
+          <div className='flex flex-col items-center justify-center py-20 text-center'>
+            <h3 className='text-2xl font-semibold text-white mb-3'>
+              Create Your First Project
+            </h3>
+
+            <p className='text-white/70 mb-8 max-w-md'>
+              Upload an image to start editing today
+            </p>
+
+          <Button 
+            onClick={() => setShowNewProjectModal(true)}
+            variant='primary' 
+            size='xl' 
+            className='gap-2'
+            >
+              <Sparkles className='w-5 h-5' />
+              Start Creating
+          </Button>
+          </div>
+        )}
+
+        <NewProjectModal 
+        isOpen={showNewProjectModal}
+        onClose={()=> setShowNewProjectModal(false)}
+        />
       </div>
     </div>
   )
