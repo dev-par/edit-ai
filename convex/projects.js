@@ -16,17 +16,6 @@ export const create = mutation({
     handler: async(ctx, args) => {
         const user = await ctx.runQuery(internal.users.getCurrentUser)
 
-        if (user.plan === "free") {
-            const projectCount = await ctx.db
-                .query("projects")
-                .withIndex("by_user", (q) => q.eq("userId", user._id))
-                .collect()
-
-            if (projectCount.length >= 3) {
-                throw new Error("You have reached the maximum number of projects. Upgrade to Pro for unlimited projects")
-            };
-        }
-
         const projectId = await ctx.db.insert("projects", {
             title: args.title,
             userId: user._id,
@@ -160,6 +149,7 @@ export const updateProject = mutation({
 
         await ctx.db.patch(args.projectId, updateData);
         return { success: true };
+
 
     },
 });

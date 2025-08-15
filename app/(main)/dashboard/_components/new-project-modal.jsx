@@ -5,7 +5,7 @@ import { usePlanAccess } from '@/hooks/use-plan-access'
 import { useConvexQuery } from '@/hooks/use-convex-query'
 import { api } from '@/convex/_generated/api'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Crown, Trash2 } from 'lucide-react'
+import { Crown, Trash2, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { useState } from 'react'
@@ -25,6 +25,7 @@ const NewProjectModal = ({ isOpen, onClose }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
     const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+    const [planSyncError, setPlanSyncError] = useState(false);
     const router = useRouter();
 
     const handleClose = () => {
@@ -32,10 +33,11 @@ const NewProjectModal = ({ isOpen, onClose }) => {
         setPreviewUrl(null);
         setProjectTitle("");
         setIsUploading(false);
+        setPlanSyncError(false);
         onClose();
     };
 
-    const { isFree, canCreateProject } = usePlanAccess();
+    const { isFree, canCreateProject, isPro, syncPlan } = usePlanAccess();
     const { data:projects } = useConvexQuery(api.projects.getUserProjects)
     const { mutate: createProject } = useConvexMutation(api.projects.create)
 
@@ -65,7 +67,9 @@ const NewProjectModal = ({ isOpen, onClose }) => {
     });
 
     const handleCreateProject = async () => {
+
         if (!canCreate) {
+            // Check if user has pro plan but is getting limited
             setShowUpgradeModal(true);
             return;
         }
@@ -108,7 +112,13 @@ const NewProjectModal = ({ isOpen, onClose }) => {
         }
         catch (error) {
             console.error("Error creating project:", error);
-            toast.error(error.message || "Failed to create project. Please try again.");
+            
+            // Check if it's a plan-related error
+            if (error.message?.includes("maximum number of projects") && isPro) {
+                setPlanSyncError(true);
+            } else {
+                toast.error(error.message || "Failed to create project. Please try again.");
+            }
         }
         finally {
             setIsUploading(false);
@@ -133,7 +143,8 @@ const NewProjectModal = ({ isOpen, onClose }) => {
                 </DialogHeader>
 
                 <div className='space-y-6'>
-                    {isFree && currentProjectCount >= 2 && (
+
+                    {isFree && currentProjectCount >= 2 && !planSyncError && (
                     <Alert className="bg-amber-500/10 border-amber-500/20">
                         <Crown />
                         <AlertTitle>Heads up!</AlertTitle>
@@ -160,7 +171,7 @@ const NewProjectModal = ({ isOpen, onClose }) => {
                             ? "border-cyan-400 bg-cyan-400/5"
                             : "border-white/20 hover:border-white/40"
                     }
-                    ${!canCreate ? "opacity-50 pointer-events-none" : ""}`}
+                    ${(!canCreate && !planSyncError) ? "opacity-50 pointer-events-none" : ""}`}
                     >
                         <input {...getInputProps()} />
                         <Upload className="h-12 w-12 text-white/50 mx-auto mb-4" />
@@ -169,7 +180,7 @@ const NewProjectModal = ({ isOpen, onClose }) => {
                         </h3>
 
                         <p className='text-white/70 mb-4'>
-                            {canCreate ? "Upload an image to get started" : "Upgrade to EditAI Pro to upload more images"}
+                            {canCreate || planSyncError ? "Upload an image to get started" : "Upgrade to EditAI Pro to upload more images"}
                         </p>{" "}
                         <p className='text-sm text-white/50'>
                             Supports PNG, JPG, JPEG, GIF, WEBP
@@ -234,7 +245,11 @@ const NewProjectModal = ({ isOpen, onClose }) => {
                         Cancel
                     </Button>
 
-                    <Button variant="primary" onClick={handleCreateProject} disabled={isUploading || !canCreate || !projectTitle.trim() || !selectedFile}>
+                    <Button 
+                        variant="primary" 
+                        onClick={handleCreateProject} 
+                        disabled={isUploading || (!canCreate && !planSyncError) || !projectTitle.trim() || !selectedFile}
+                    >
                         {isUploading ? (
                         <>
                             <Loader2 className="w-4 h-4 mr-2 animate-spin" />

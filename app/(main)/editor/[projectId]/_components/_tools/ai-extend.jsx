@@ -216,8 +216,8 @@ export function AIExtenderControls({ project }) {
 
   const { width: newWidth, height: newHeight } = calculateDimensions();
   const currentImage = getMainImage();
-  const canApply = extensionMode === "auto" || (extensionMode === "direction" && selectedDirection);
   const autoExtensionAmount = calculateAutoExtensionAmount();
+  const canApply = (extensionMode === "auto" && autoExtensionAmount > 0) || (extensionMode === "direction" && selectedDirection);
 
   return (
     <div className="space-y-6">
@@ -312,9 +312,15 @@ export function AIExtenderControls({ project }) {
             <div>
               Required extension: {autoExtensionAmount}px
             </div>
-            <div>
-              This will extend your image to exactly fit the canvas dimensions
-            </div>
+            {autoExtensionAmount === 0 ? (
+              <div className="text-amber-400">
+                No extension needed - image is already at or larger than canvas size
+              </div>
+            ) : (
+              <div>
+                This will extend your image to exactly fit the canvas dimensions
+              </div>
+            )}
           </div>
         </div>
       )}

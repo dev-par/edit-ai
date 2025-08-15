@@ -11,6 +11,8 @@ export function useStoreUser() {
   // has stored the user.
   const [userId, setUserId] = useState(null);
   const storeUser = useMutation(api.users.store);
+  const updateUserPlan = useMutation(api.users.updateUserPlan);
+  
   // Call the `storeUser` mutation function to store
   // the current user in the `users` table and return the `Id` value.
   useEffect(() => {
@@ -24,12 +26,21 @@ export function useStoreUser() {
     async function createUser() {
       const id = await storeUser();
       setUserId(id);
+      
+      // After storing the user, sync their plan if needed
+      if (user?.publicMetadata?.plan) {
+        try {
+          await updateUserPlan({ plan: user.publicMetadata.plan });
+        } catch (error) {
+          console.error("Failed to sync plan:", error);
+        }
+      }
     }
     createUser();
     return () => setUserId(null);
     // Make sure the effect reruns if the user logs in with
     // a different identity
-  }, [isAuthenticated, storeUser, user?.id]);
+  }, [isAuthenticated, storeUser, user?.id, user?.publicMetadata?.plan, updateUserPlan]);
   // Combine the local state with the state from context
   return {
     isLoading: isLoading || (isAuthenticated && userId === null),
