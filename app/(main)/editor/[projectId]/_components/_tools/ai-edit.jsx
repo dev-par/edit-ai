@@ -21,7 +21,7 @@ const RETOUCH_PRESETS = [
   {
     key: "ai_retouch",
     label: "AI Retouch",
-    description: "Improve image quality with AI",
+    description: "Improve colors and reduce noise",
     icon: Sparkles,
     transform: "e-retouch",
     recommended: true,
@@ -37,7 +37,7 @@ const RETOUCH_PRESETS = [
   {
     key: "enhance_sharpen",
     label: "Enhance & Sharpen",
-    description: "AI retouch + contrast + sharpening",
+    description: "Retouch + contrast + sharpening",
     icon: Mountain,
     transform: "e-retouch,e-contrast,e-sharpen",
     recommended: false,
@@ -45,7 +45,7 @@ const RETOUCH_PRESETS = [
   {
     key: "premium_quality",
     label: "Premium Quality",
-    description: "AI retouch + upscale + enhancements",
+    description: "Complete enhancement package",
     icon: Camera,
     transform: "e-retouch,e-upscale,e-contrast,e-sharpen",
     recommended: false,
@@ -240,23 +240,23 @@ export function AIEdit({ project }) {
       <div className="bg-slate-700/30 rounded-lg p-4">
         <h4 className="text-sm font-medium text-white mb-2 flex items-center gap-2">
           <Info className="h-4 w-4" />
-          How AI Retouch Works
+          How AI Enhancement Works
         </h4>
         <div className="space-y-2 text-xs text-white/70">
           <p>
-            • <strong>AI Retouch:</strong> AI analyzes and applies optimal
-            improvements
+            • <strong>AI Retouch:</strong> Automatically improves colors, reduces noise, and enhances overall image quality using AI analysis
           </p>
           <p>
-            • <strong>Smart Processing:</strong> Preserves details while
-            enhancing quality
+            • <strong>AI Upscale:</strong> Increases image resolution to 16MP using AI to generate new pixel data intelligently
           </p>
           <p>
-            • <strong>Multiple Styles:</strong> Choose enhancement that fits
-            your image
+            • <strong>Enhance & Sharpen:</strong> Combines AI retouch with contrast boosting and detail sharpening for professional results
           </p>
           <p>
-            • <strong>Instant Results:</strong> See improvements in seconds
+            • <strong>Premium Quality:</strong> Complete enhancement package with retouch, upscaling, contrast, and sharpening for maximum quality
+          </p>
+          <p>
+            • <strong>Processing Time:</strong> AI transformations may take 10-60 seconds depending on image complexity
           </p>
         </div>
       </div>
