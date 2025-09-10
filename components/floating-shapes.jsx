@@ -64,10 +64,6 @@ const FloatingShapes = () => {
   // Enhanced starscape with multiple star types
   useEffect(() => {
 
-    if (isMobile || isTablet) {
-      return; // Skip rendering on mobile/tablet for performance
-    }
-
     const starTypes = [
       { className: 'animate-twinkle-fast', baseOpacity: 0.4, sizeRange: [1, 2] },
       { className: 'animate-twinkle', baseOpacity: 0.3, sizeRange: [1.5, 3] },
