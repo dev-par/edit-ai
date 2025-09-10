@@ -20,7 +20,12 @@ const HeroSection = () => {
     }, [])
 
   return (
-    <section className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden'>
+    <section className='py-32 flex flex-col items-center justify-center relative overflow-hidden' 
+      style={{ 
+        minHeight: '100vh', 
+        paddingTop: 'max(6rem, 10vh)',  // Responsive padding that scales with viewport height
+        paddingBottom: 'max(2rem, 5vh)'  // Ensures bottom spacing as well
+      }}>
      {/* Text Content Container */}
      <div className='text-center z-10 px-6 flex-shrink-0'>
         <div className={`transition-all duration-1000 ${textVisible ? 'opacity-100 translate-y-0' : "opacity-0 translate-y-10"}`}>
@@ -42,7 +47,7 @@ const HeroSection = () => {
             </Link>
             </div>
         </div>
-     </div>
+      </div>
         
      {/* Demo Section - Full Width */}
      <div 
