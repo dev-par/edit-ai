@@ -118,7 +118,7 @@ const FloatingShapes = () => {
             className={`absolute ${shape.size} ${shape.position} bg-gradient-to-r ${shape.gradient} rounded-full blur-3xl`}
                           style={{
                 filter: 'blur(60px)',
-                transform: `translateY(${scrollY * -.5}px) rotate(${scrollY * -0.1}deg)`,
+                transform: `translateY(${scrollY * .6}px) rotate(${scrollY * -0.1}deg)`,
                 opacity: Math.max(0, 1 - (scrollY * 0.001))
               }}
           />
