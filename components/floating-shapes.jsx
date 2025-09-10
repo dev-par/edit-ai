@@ -95,7 +95,6 @@ const FloatingShapes = () => {
   return (
     <>
       {/* Enhanced starscape background */}
-      {!(isMobile || isTablet) && (
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
 
         {stars.map(star => (
@@ -116,7 +115,6 @@ const FloatingShapes = () => {
           />    
         ))}
         </div>
-      )}
 
       {/* Enhanced floating gradient blobs with subtle movement */}
       {!(isMobile || isTablet) && (
