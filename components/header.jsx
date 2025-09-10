@@ -50,11 +50,16 @@ const Header = () => {
 
             <div className='flex items-center gap-3 ml-10 md:ml-20'>
             <Unauthenticated>
-              <SignInButton>
-                <Button variant="glass">Sign In</Button>
-              </SignInButton>
+              <div className='hidden sm:block'>
+                <SignInButton>
+                  <Button variant="glass">Sign In</Button>
+                </SignInButton>
+              </div>
               <SignUpButton>
-                <Button variant="primary">Sign Up</Button>
+                <Button variant="primary">
+                  <span className='sm:hidden'>Get Started</span>
+                  <span className='hidden sm:inline'>Sign Up</span>
+                </Button>
               </SignUpButton>
             </Unauthenticated>
             <Authenticated>
