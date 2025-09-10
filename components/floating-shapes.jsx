@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParallax } from '@/hooks/use-parallax';
+import { isMobile, isTablet } from 'react-device-detect';
 
 const FloatingShapes = () => {
   const scrollY = useParallax();
@@ -62,6 +63,11 @@ const FloatingShapes = () => {
 
   // Enhanced starscape with multiple star types
   useEffect(() => {
+
+    if (isMobile || isTablet) {
+      return; // Skip rendering on mobile/tablet for performance
+    }
+
     const starTypes = [
       { className: 'animate-twinkle-fast', baseOpacity: 0.4, sizeRange: [1, 2] },
       { className: 'animate-twinkle', baseOpacity: 0.3, sizeRange: [1.5, 3] },
@@ -89,26 +95,28 @@ const FloatingShapes = () => {
   return (
     <>
       {/* Enhanced starscape background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {!(isMobile || isTablet) && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
 
-      {stars.map(star => (
-        <div
-          key={star.id}
-          className={`star ${star.className} ${star.color ? `star-${star.color}` : ""}`}
-          style={{
-            position: "absolute",
-            top: star.top,
-            left: star.left,
-            width: star.size,
-            height: star.size,
-            opacity: star.baseOpacity,
-            animationDelay: star.delay,
-            borderRadius: "50%",
-            background: star.color || "white",
-          }}
-        />    
-      ))}
-      </div>
+        {stars.map(star => (
+          <div
+            key={star.id}
+            className={`star ${star.className} ${star.color ? `star-${star.color}` : ""}`}
+            style={{
+              position: "absolute",
+              top: star.top,
+              left: star.left,
+              width: star.size,
+              height: star.size,
+              opacity: star.baseOpacity,
+              animationDelay: star.delay,
+              borderRadius: "50%",
+              background: star.color || "white",
+            }}
+          />    
+        ))}
+        </div>
+      )}
 
       {/* Enhanced floating gradient blobs with subtle movement */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
