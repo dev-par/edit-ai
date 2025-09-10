@@ -119,6 +119,7 @@ const FloatingShapes = () => {
       )}
 
       {/* Enhanced floating gradient blobs with subtle movement */}
+      {!(isMobile || isTablet) && (
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {shapes.map((shape) => (
           <div
@@ -132,6 +133,7 @@ const FloatingShapes = () => {
           />
         ))}
       </div>
+      )}
     </>
   );
 };
